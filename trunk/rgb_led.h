@@ -40,6 +40,7 @@ class rgb_led {
       int _getbluePin();
       void _setDelay(int d);
       int _getDelay();
+      void rgb(int r, int g, int b);
       //pin defaults
       int redPin;
       int greenPin;

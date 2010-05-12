@@ -31,9 +31,49 @@ void setup() {
   //do something
 }
 
+/**
+ * demo function fades red then green then blue
+ * @var int d delay
+ **/
 int cPin = 0;
-void loop(){
+void red_green_blue(int d){
   cPin = rgb.nextPin(cPin);
-  rgb.glow(cPin,0,10);
-  rgb.dim(cPin,255,10);
+  rgb.glow(cPin,0,d);
+  rgb.dim(cPin,255,d);
+}
+
+/**
+ * More invloved example function using the rgb method.
+ * glows to bright white then to off, steps based on delay
+ * @var int d delay
+ **/
+void whiteBeacon(int d){
+  int i = 0;
+  //get brighter
+  while(i < 255){
+    rgb.rgb(i,i,i);
+    i++;
+    delay(d);
+    //this is here to break the loop at the right time
+    //otherwise it will appear to flicker on chage
+    if(i >= 255){
+       break;
+    }
+   }
+  //fade out
+  while(i > 0){
+     rgb.rgb(i,i,i);
+     i--;
+     delay(d);
+     //this is here to break the loop at the right time
+     //otherwise it will appear to flicker on chage
+     if(i <= 0){
+       break;
+     }
+  }
+}
+
+void loop(){
+  //red_green_blue(10);
+  whiteBeacon(10);
 }

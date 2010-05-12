@@ -136,3 +136,15 @@ int rgb_led::nextPin(int cPin){
       return rgb_led::redPin; 
     }
 }
+
+/**
+ * This function will set the Red,Green and blue values on the LED
+ * @var int r red value (0-255)
+ * @var int g green value (0-255)
+ * @var int b blue value (0-255)
+ **/
+void rgb_led::rgb(int r, int g, int b){
+    analogWrite(rgb_led::redPin,r);
+    analogWrite(rgb_led::greenPin,g);
+    analogWrite(rgb_led::bluePin,b);
+}
