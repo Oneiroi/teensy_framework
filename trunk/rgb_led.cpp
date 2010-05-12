@@ -41,29 +41,47 @@ rgb_led::~rgb_led(){
   //do something 
 }
 
+/**
+ * redPin setter
+ * @var int redPin
+ **/
 void rgb_led::_setredPin(int redPin){
   rgb_led::redPin = redPin;
 }
+/**
+ * redPin getter
+ * @return int
+ **/
 int rgb_led::_getredPin(){
   return rgb_led::redPin;
 }
+/**
+ * greenPin setter
+ * @var int redPin
+ **/
 void rgb_led::_setgreenPin(int greenPin){
   rgb_led::greenPin = greenPin;
 }
+/**
+ * greenPin getter
+ * @return int
+ **/
 int rgb_led::_getgreenPin(){
   return rgb_led::greenPin;
 }
+/**
+ * bluePin setter
+ * @var int redPin
+ **/
 void rgb_led::_setbluePin(int bluePin){
   rgb_led::bluePin = bluePin;
 }
+/**
+ * bluePin getter
+ * @return int
+ **/
 int rgb_led::_getbluePin(){
   return rgb_led::bluePin;
-}
-int rgb_led::_getDelay(){
-  return rgb_led::d;
-}
-void rgb_led::_setDelay(int d){
-  rgb_led::d = d;
 }
 /**
  * This function causes the LED to glow dimmer for the selected pin,
@@ -106,6 +124,7 @@ void rgb_led::glow(int p, int v, int d){
 /**
  * This function can be used to jump to the "next" pin
  * following this order: red -> green -> blue -> red ...
+ * @return int
  **/
 int rgb_led::nextPin(int cPin){
    //pin swap

@@ -43,10 +43,6 @@ class rgb_led {
       //pin defaults
       int redPin;
       int greenPin;
-      int bluePin;
-      //global vars
-      int p;     //starting pin
-      int d;     //ms delay (colour time = d*2*255)
-       
+      int bluePin;       
 };
 #endif
