@@ -33,11 +33,7 @@ void setup() {
 
 int cPin = 0;
 void loop(){
-  if(cPin == 0){
-    cPin = rgb.nextPin(0);
-  } else {
-    cPin = rgb.nextPin(cPin);
-  }
+  cPin = rgb.nextPin(cPin);
   rgb.glow(cPin,0,10);
   rgb.dim(cPin,255,10);
 }
