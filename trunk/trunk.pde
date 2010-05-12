@@ -74,6 +74,6 @@ void whiteBeacon(int d){
 }
 
 void loop(){
-  //red_green_blue(10);
+  red_green_blue(10);
   whiteBeacon(10);
 }
