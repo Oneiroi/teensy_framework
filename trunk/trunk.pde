@@ -37,9 +37,22 @@ void setup() {
  **/
 int cPin = 0;
 void red_green_blue(int d){
-  cPin = rgb.nextPin(cPin);
-  rgb.glow(cPin,0,d);
-  rgb.dim(cPin,255,d);
+  //using nextpin method to cycle
+  int i = 0;
+  do {
+    cPin = rgb.nextPin(cPin);
+    rgb.glow(cPin,0,d);
+    rgb.dim(cPin,255,d);
+    i++;
+  } while( i < 3 );
+  //manually cycle pins using fade in/out functions
+  rgb.fadeinRed(d);
+  rgb.fadeoutRed(d);
+  rgb.fadeinGreen(d);
+  rgb.fadeoutGreen(d);
+  rgb.fadeinBlue(d);
+  rgb.fadeoutBlue(d);
+  
 }
 
 /**
@@ -47,33 +60,21 @@ void red_green_blue(int d){
  * glows to bright white then to off, steps based on delay
  * @var int d delay
  **/
-void whiteBeacon(int d){
-  int i = 0;
-  //get brighter
-  while(i < 255){
-    rgb.rgb(i,i,i);
-    i++;
-    delay(d);
-    //this is here to break the loop at the right time
-    //otherwise it will appear to flicker on chage
-    if(i >= 255){
-       break;
-    }
-   }
-  //fade out
-  while(i > 0){
-     rgb.rgb(i,i,i);
-     i--;
-     delay(d);
-     //this is here to break the loop at the right time
-     //otherwise it will appear to flicker on chage
-     if(i <= 0){
-       break;
-     }
-  }
+void whiteFade(int d){
+  //fade in one colour at a time
+  rgb.fadeinRed(d);
+  rgb.fadeinGreen(d);
+  rgb.fadeinBlue(d);
+  //and out one colour at a timw
+  rgb.fadeoutRed(d);
+  rgb.fadeoutGreen(d);
+  rgb.fadeoutBlue(d);
+  //bring all three up
+  rgb.fadeinRGB(d);
+  rgb.fadeoutRGB(d);
 }
 
 void loop(){
   red_green_blue(10);
-  whiteBeacon(10);
+  whiteFade(10);
 }

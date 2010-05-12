@@ -31,7 +31,9 @@ class rgb_led {
       void dim();
       int nextPin(int cPin);
       void dim(int p, int v, int d);
+      void dimRGB(int v, int d);
       void glow(int p, int v, int d);
+      void glowRGB(int v, int d);
       void _setredPin(int redPin);
       int _getredPin();
       void _setgreenPin(int greenPin);
@@ -41,6 +43,14 @@ class rgb_led {
       void _setDelay(int d);
       int _getDelay();
       void rgb(int r, int g, int b);
+      void fadeinRed(int d);
+      void fadeinGreen(int d);
+      void fadeinBlue(int d);
+      void fadeinRGB(int d);
+      void fadeoutRed(int d);
+      void fadeoutGreen(int d);
+      void fadeoutBlue(int d);
+      void fadeoutRGB(int d);
       //pin defaults
       int redPin;
       int greenPin;

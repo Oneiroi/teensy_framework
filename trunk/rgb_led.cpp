@@ -101,6 +101,24 @@ void rgb_led::dim(int p, int v, int d){
      }
   }
 }
+/**
+ * same as rgb_led::dim() only addresses all 3 pins at once
+ * @int v the starting value (0-255)
+ * @int d the delay in milliseconds
+ **/
+void rgb_led::dimRGB(int v, int d){
+  //glow dimmer
+  while(v > 0){
+     analogWrite(rgb_led::redPin,v);
+     analogWrite(rgb_led::greenPin,v);
+     analogWrite(rgb_led::bluePin,v);
+     v = v-1;
+     delay(d);
+     if(v <= 0){
+       break;
+     }
+  }
+}
 
 /**
  * This function causes the LED to glow brighter for the selected pin,
@@ -113,6 +131,25 @@ void rgb_led::glow(int p, int v, int d){
   //glow brighter
   while(v < 255){
      analogWrite(p,v);
+     v = v+1;
+     delay(d);
+     if(v >= 255){
+       break;
+     }
+   }
+}
+
+/**
+ * same as rgb_led::glow() only addresses all 3 pins at once
+ * @int v the starting value (0-255)
+ * @int d the delay in milliseconds
+ **/
+void rgb_led::glowRGB(int v, int d){
+  //glow brighter
+  while(v < 255){
+     analogWrite(rgb_led::redPin,v);
+     analogWrite(rgb_led::greenPin,v);
+     analogWrite(rgb_led::bluePin,v);
      v = v+1;
      delay(d);
      if(v >= 255){
@@ -147,4 +184,61 @@ void rgb_led::rgb(int r, int g, int b){
     analogWrite(rgb_led::redPin,r);
     analogWrite(rgb_led::greenPin,g);
     analogWrite(rgb_led::bluePin,b);
+}
+
+/**
+ * wrapper for rgb_led::glow() fades in red
+ * @int d delay in milliseconds
+ **/
+void rgb_led::fadeinRed(int d){
+  rgb_led::glow(rgb_led::redPin,0,d);
+}
+/**
+ * wrapper for rgb_led::glow() fades in green
+ * @int d delay in milliseconds
+ **/
+void rgb_led::fadeinGreen(int d){
+  rgb_led::glow(rgb_led::greenPin,0,d);
+}
+/**
+ * wrapper for rgb_led::glow() fades in blue
+ * @int d delay in milliseconds
+ **/
+void rgb_led::fadeinBlue(int d){
+  rgb_led::glow(rgb_led::bluePin,0,d);
+}
+/**
+ * wrapper for rgb_led::glowRGB() fades in blue
+ * @int d delay in milliseconds
+ **/
+void rgb_led::fadeinRGB(int d){
+  rgb_led::glowRGB(0,d);
+}
+/**
+ * wrapper for rgb_led::dim() fades out red
+ * @int d delay in milliseconds
+ **/
+void rgb_led::fadeoutRed(int d){
+  rgb_led::dim(rgb_led::redPin,255,d);
+}
+/**
+ * wrapper for rgb_led::dim() fades out green
+ * @int d delay in milliseconds
+ **/
+void rgb_led::fadeoutGreen(int d){
+  rgb_led::dim(rgb_led::greenPin,255,d);
+}
+/**
+ * wrapper for rgb_led::dim() fades out blue
+ * @int d delay in milliseconds
+ **/
+void rgb_led::fadeoutBlue(int d){
+  rgb_led::dim(rgb_led::bluePin,255,d);
+}
+/**
+ * wrapper for rgb_led::dimRGB() fades out blue
+ * @int d delay in milliseconds
+ **/
+void rgb_led::fadeoutRGB(int d){
+  rgb_led::dimRGB(255,d);
 }
