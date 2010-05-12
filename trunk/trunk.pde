@@ -74,6 +74,10 @@ void whiteFade(int d){
   rgb.fadeoutRGB(d);
 }
 
+/**
+ * program loop, I have noticed a delay on re-run
+ * at a guess if running on +5v @ 16mhz delay = 1 / 16000 = 0.0625 ms
+ **/
 void loop(){
   red_green_blue(10);
   whiteFade(10);
