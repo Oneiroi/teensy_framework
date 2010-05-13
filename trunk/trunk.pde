@@ -23,7 +23,7 @@ Teensy Arduino library.
     Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form.
 */
 #include "rgb_led.h"
-rgb_led rgb(12,15,14);
+libRGB rgb(12,15,14);
 
 // The setup() method runs once, when the sketch starts
 

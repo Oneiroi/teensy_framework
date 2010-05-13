@@ -21,38 +21,21 @@ Teensy Arduino library.
 
     Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form.
 */
-#ifndef H_LIB_RGB
-#define H_LIB_RGB
-class libRGB {
-   public:
-      libRGB(int redPin, int greenPin, int bluePin);
-      ~libRGB();
-      void dim();
-      int nextPin(int cPin);
-      void dim(int p, int v, int d);
-      void dimRGB(int v, int d);
-      void glow(int p, int v, int d);
-      void glowRGB(int v, int d);
-      void _setredPin(int redPin);
-      int _getredPin();
-      void _setgreenPin(int greenPin);
-      int _getgreenPin();
-      void _setbluePin(int bluePin);
-      int _getbluePin();
-      void _setDelay(int d);
-      int _getDelay();
-      void rgb(int r, int g, int b);
-      void fadeinRed(int d);
-      void fadeinGreen(int d);
-      void fadeinBlue(int d);
-      void fadeinRGB(int d);
-      void fadeoutRed(int d);
-      void fadeoutGreen(int d);
-      void fadeoutBlue(int d);
-      void fadeoutRGB(int d);
-      //pin defaults
-      int redPin;
-      int greenPin;
-      int bluePin;       
-};
-#endif
+/*#include "serial.h"
+#include "WProgram.h"
+
+libSerial::libSerial(int baud){
+    Serial.begin(baud);
+}
+
+libSerial::~libSerial(){
+    //do something
+}
+
+void libSerial::sWrite(char* message){
+   Serial.println(message); 
+}
+
+void libSerial::sRead(){
+     
+}*/

@@ -1,4 +1,3 @@
-
 /*
 Teensy Arduino library.
     Copyright (C) 2010 David Busby Saiweb.co.uk
@@ -28,16 +27,16 @@ Teensy Arduino library.
 /**
  * class construct sets up required vars / methods
  **/
-rgb_led::rgb_led(int redPin, int greenPin, int bluePin){
-  rgb_led::redPin = redPin;
-  rgb_led::greenPin = greenPin;
-  rgb_led::bluePin = bluePin;
-  pinMode(rgb_led::redPin, OUTPUT);
-  pinMode(rgb_led::greenPin, OUTPUT);
-  pinMode(rgb_led::bluePin, OUTPUT); 
+libRGB::libRGB(int redPin, int greenPin, int bluePin){
+  libRGB::redPin = redPin;
+  libRGB::greenPin = greenPin;
+  libRGB::bluePin = bluePin;
+  pinMode(libRGB::redPin, OUTPUT);
+  pinMode(libRGB::greenPin, OUTPUT);
+  pinMode(libRGB::bluePin, OUTPUT); 
 }
 
-rgb_led::~rgb_led(){
+libRGB::~libRGB(){
   //do something 
 }
 
@@ -45,43 +44,43 @@ rgb_led::~rgb_led(){
  * redPin setter
  * @var int redPin
  **/
-void rgb_led::_setredPin(int redPin){
-  rgb_led::redPin = redPin;
+void libRGB::_setredPin(int redPin){
+  libRGB::redPin = redPin;
 }
 /**
  * redPin getter
  * @return int
  **/
-int rgb_led::_getredPin(){
-  return rgb_led::redPin;
+int libRGB::_getredPin(){
+  return libRGB::redPin;
 }
 /**
  * greenPin setter
  * @var int redPin
  **/
-void rgb_led::_setgreenPin(int greenPin){
-  rgb_led::greenPin = greenPin;
+void libRGB::_setgreenPin(int greenPin){
+  libRGB::greenPin = greenPin;
 }
 /**
  * greenPin getter
  * @return int
  **/
-int rgb_led::_getgreenPin(){
-  return rgb_led::greenPin;
+int libRGB::_getgreenPin(){
+  return libRGB::greenPin;
 }
 /**
  * bluePin setter
  * @var int redPin
  **/
-void rgb_led::_setbluePin(int bluePin){
-  rgb_led::bluePin = bluePin;
+void libRGB::_setbluePin(int bluePin){
+  libRGB::bluePin = bluePin;
 }
 /**
  * bluePin getter
  * @return int
  **/
-int rgb_led::_getbluePin(){
-  return rgb_led::bluePin;
+int libRGB::_getbluePin(){
+  return libRGB::bluePin;
 }
 /**
  * This function causes the LED to glow dimmer for the selected pin,
@@ -90,7 +89,7 @@ int rgb_led::_getbluePin(){
  * @int v the starting value (0-255)
  * @int d the delay in milliseconds
  **/
-void rgb_led::dim(int p, int v, int d){
+void libRGB::dim(int p, int v, int d){
   //glow dimmer
   while(v > 0){
      analogWrite(p,v);
@@ -102,16 +101,16 @@ void rgb_led::dim(int p, int v, int d){
   }
 }
 /**
- * same as rgb_led::dim() only addresses all 3 pins at once
+ * same as libRGB::dim() only addresses all 3 pins at once
  * @int v the starting value (0-255)
  * @int d the delay in milliseconds
  **/
-void rgb_led::dimRGB(int v, int d){
+void libRGB::dimRGB(int v, int d){
   //glow dimmer
   while(v > 0){
-     analogWrite(rgb_led::redPin,v);
-     analogWrite(rgb_led::greenPin,v);
-     analogWrite(rgb_led::bluePin,v);
+     analogWrite(libRGB::redPin,v);
+     analogWrite(libRGB::greenPin,v);
+     analogWrite(libRGB::bluePin,v);
      v = v-1;
      delay(d);
      if(v <= 0){
@@ -127,7 +126,7 @@ void rgb_led::dimRGB(int v, int d){
  * @int v the starting value (0-255)
  * @int d the delay in milliseconds
  **/
-void rgb_led::glow(int p, int v, int d){
+void libRGB::glow(int p, int v, int d){
   //glow brighter
   while(v < 255){
      analogWrite(p,v);
@@ -140,16 +139,16 @@ void rgb_led::glow(int p, int v, int d){
 }
 
 /**
- * same as rgb_led::glow() only addresses all 3 pins at once
+ * same as libRGB::glow() only addresses all 3 pins at once
  * @int v the starting value (0-255)
  * @int d the delay in milliseconds
  **/
-void rgb_led::glowRGB(int v, int d){
+void libRGB::glowRGB(int v, int d){
   //glow brighter
   while(v < 255){
-     analogWrite(rgb_led::redPin,v);
-     analogWrite(rgb_led::greenPin,v);
-     analogWrite(rgb_led::bluePin,v);
+     analogWrite(libRGB::redPin,v);
+     analogWrite(libRGB::greenPin,v);
+     analogWrite(libRGB::bluePin,v);
      v = v+1;
      delay(d);
      if(v >= 255){
@@ -163,14 +162,14 @@ void rgb_led::glowRGB(int v, int d){
  * following this order: red -> green -> blue -> red ...
  * @return int
  **/
-int rgb_led::nextPin(int cPin){
+int libRGB::nextPin(int cPin){
    //pin swap
-    if(cPin == rgb_led::redPin){
-      return rgb_led::greenPin;
-    } else if(cPin == rgb_led::greenPin) {
-      return rgb_led::bluePin;
+    if(cPin == libRGB::redPin){
+      return libRGB::greenPin;
+    } else if(cPin == libRGB::greenPin) {
+      return libRGB::bluePin;
     } else {
-      return rgb_led::redPin; 
+      return libRGB::redPin; 
     }
 }
 
@@ -180,65 +179,65 @@ int rgb_led::nextPin(int cPin){
  * @var int g green value (0-255)
  * @var int b blue value (0-255)
  **/
-void rgb_led::rgb(int r, int g, int b){
-    analogWrite(rgb_led::redPin,r);
-    analogWrite(rgb_led::greenPin,g);
-    analogWrite(rgb_led::bluePin,b);
+void libRGB::rgb(int r, int g, int b){
+    analogWrite(libRGB::redPin,r);
+    analogWrite(libRGB::greenPin,g);
+    analogWrite(libRGB::bluePin,b);
 }
 
 /**
- * wrapper for rgb_led::glow() fades in red
+ * wrapper for libRGB::glow() fades in red
  * @int d delay in milliseconds
  **/
-void rgb_led::fadeinRed(int d){
-  rgb_led::glow(rgb_led::redPin,0,d);
+void libRGB::fadeinRed(int d){
+  libRGB::glow(libRGB::redPin,0,d);
 }
 /**
- * wrapper for rgb_led::glow() fades in green
+ * wrapper for libRGB::glow() fades in green
  * @int d delay in milliseconds
  **/
-void rgb_led::fadeinGreen(int d){
-  rgb_led::glow(rgb_led::greenPin,0,d);
+void libRGB::fadeinGreen(int d){
+  libRGB::glow(libRGB::greenPin,0,d);
 }
 /**
- * wrapper for rgb_led::glow() fades in blue
+ * wrapper for libRGB::glow() fades in blue
  * @int d delay in milliseconds
  **/
-void rgb_led::fadeinBlue(int d){
-  rgb_led::glow(rgb_led::bluePin,0,d);
+void libRGB::fadeinBlue(int d){
+  libRGB::glow(libRGB::bluePin,0,d);
 }
 /**
- * wrapper for rgb_led::glowRGB() fades in blue
+ * wrapper for libRGB::glowRGB() fades in blue
  * @int d delay in milliseconds
  **/
-void rgb_led::fadeinRGB(int d){
-  rgb_led::glowRGB(0,d);
+void libRGB::fadeinRGB(int d){
+  libRGB::glowRGB(0,d);
 }
 /**
- * wrapper for rgb_led::dim() fades out red
+ * wrapper for libRGB::dim() fades out red
  * @int d delay in milliseconds
  **/
-void rgb_led::fadeoutRed(int d){
-  rgb_led::dim(rgb_led::redPin,255,d);
+void libRGB::fadeoutRed(int d){
+  libRGB::dim(libRGB::redPin,255,d);
 }
 /**
- * wrapper for rgb_led::dim() fades out green
+ * wrapper for libRGB::dim() fades out green
  * @int d delay in milliseconds
  **/
-void rgb_led::fadeoutGreen(int d){
-  rgb_led::dim(rgb_led::greenPin,255,d);
+void libRGB::fadeoutGreen(int d){
+  libRGB::dim(libRGB::greenPin,255,d);
 }
 /**
- * wrapper for rgb_led::dim() fades out blue
+ * wrapper for libRGB::dim() fades out blue
  * @int d delay in milliseconds
  **/
-void rgb_led::fadeoutBlue(int d){
-  rgb_led::dim(rgb_led::bluePin,255,d);
+void libRGB::fadeoutBlue(int d){
+  libRGB::dim(libRGB::bluePin,255,d);
 }
 /**
- * wrapper for rgb_led::dimRGB() fades out blue
+ * wrapper for libRGB::dimRGB() fades out blue
  * @int d delay in milliseconds
  **/
-void rgb_led::fadeoutRGB(int d){
-  rgb_led::dimRGB(255,d);
+void libRGB::fadeoutRGB(int d){
+  libRGB::dimRGB(255,d);
 }
