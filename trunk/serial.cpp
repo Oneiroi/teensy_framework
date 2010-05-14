@@ -21,11 +21,12 @@ Teensy Arduino library.
 
     Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form.
 */
-/*#include "serial.h"
+#include "serial.h"
 #include "WProgram.h"
 
-libSerial::libSerial(int baud){
+libSerial::libSerial(int baud, bool showTime){
     Serial.begin(baud);
+    libSerial::showTime = showTime;
 }
 
 libSerial::~libSerial(){
@@ -38,4 +39,4 @@ void libSerial::sWrite(char* message){
 
 void libSerial::sRead(){
      
-}*/
+}

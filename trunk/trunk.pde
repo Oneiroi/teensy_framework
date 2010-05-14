@@ -23,7 +23,9 @@ Teensy Arduino library.
     Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form.
 */
 #include "rgb_led.h"
+//#include "serial.h"
 libRGB rgb(12,15,14);
+//libSerial s(38400,true);
 
 // The setup() method runs once, when the sketch starts
 
@@ -80,5 +82,4 @@ void whiteFade(int d){
  **/
 void loop(){
   red_green_blue(10);
-  whiteFade(10);
 }
