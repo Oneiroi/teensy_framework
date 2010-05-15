@@ -28,9 +28,9 @@ Teensy Arduino library.
  * class construct sets up required vars / methods
  **/
 libRGB::libRGB(int redPin, int greenPin, int bluePin){
-  libRGB::redPin = redPin;
-  libRGB::greenPin = greenPin;
-  libRGB::bluePin = bluePin;
+  libRGB::_setredPin(redPin);
+  libRGB::_setgreenPin(greenPin);
+  libRGB::_setbluePin(bluePin);
   pinMode(libRGB::redPin, OUTPUT);
   pinMode(libRGB::greenPin, OUTPUT);
   pinMode(libRGB::bluePin, OUTPUT); 
@@ -108,9 +108,9 @@ void libRGB::dim(int p, int v, int d){
 void libRGB::dimRGB(int v, int d){
   //glow dimmer
   while(v > 0){
-     analogWrite(libRGB::redPin,v);
-     analogWrite(libRGB::greenPin,v);
-     analogWrite(libRGB::bluePin,v);
+     analogWrite(libRGB::_getredPin(),v);
+     analogWrite(libRGB::_getgreenPin(),v);
+     analogWrite(libRGB::_getbluePin(),v);
      v = v-1;
      delay(d);
      if(v <= 0){
@@ -146,9 +146,9 @@ void libRGB::glow(int p, int v, int d){
 void libRGB::glowRGB(int v, int d){
   //glow brighter
   while(v < 255){
-     analogWrite(libRGB::redPin,v);
-     analogWrite(libRGB::greenPin,v);
-     analogWrite(libRGB::bluePin,v);
+     analogWrite(libRGB::_getredPin(),v);
+     analogWrite(libRGB::_getgreenPin(),v);
+     analogWrite(libRGB::_getbluePin(),v);
      v = v+1;
      delay(d);
      if(v >= 255){
@@ -164,12 +164,12 @@ void libRGB::glowRGB(int v, int d){
  **/
 int libRGB::nextPin(int cPin){
    //pin swap
-    if(cPin == libRGB::redPin){
-      return libRGB::greenPin;
-    } else if(cPin == libRGB::greenPin) {
-      return libRGB::bluePin;
+    if(cPin == libRGB::_getredPin()){
+      return libRGB::_getgreenPin();
+    } else if(cPin == libRGB::_getgreenPin()) {
+      return libRGB::_getbluePin();
     } else {
-      return libRGB::redPin; 
+      return libRGB::_getredPin(); 
     }
 }
 
@@ -180,9 +180,9 @@ int libRGB::nextPin(int cPin){
  * @var int b blue value (0-255)
  **/
 void libRGB::rgb(int r, int g, int b){
-    analogWrite(libRGB::redPin,r);
-    analogWrite(libRGB::greenPin,g);
-    analogWrite(libRGB::bluePin,b);
+    analogWrite(libRGB::_getredPin(),r);
+    analogWrite(libRGB::_getgreenPin(),g);
+    analogWrite(libRGB::_getbluePin(),b);
 }
 
 /**
@@ -190,21 +190,21 @@ void libRGB::rgb(int r, int g, int b){
  * @int d delay in milliseconds
  **/
 void libRGB::fadeinRed(int d){
-  libRGB::glow(libRGB::redPin,0,d);
+  libRGB::glow(libRGB::_getredPin(),0,d);
 }
 /**
  * wrapper for libRGB::glow() fades in green
  * @int d delay in milliseconds
  **/
 void libRGB::fadeinGreen(int d){
-  libRGB::glow(libRGB::greenPin,0,d);
+  libRGB::glow(libRGB::_getgreenPin(),0,d);
 }
 /**
  * wrapper for libRGB::glow() fades in blue
  * @int d delay in milliseconds
  **/
 void libRGB::fadeinBlue(int d){
-  libRGB::glow(libRGB::bluePin,0,d);
+  libRGB::glow(libRGB::_getbluePin(),0,d);
 }
 /**
  * wrapper for libRGB::glowRGB() fades in blue
@@ -218,21 +218,21 @@ void libRGB::fadeinRGB(int d){
  * @int d delay in milliseconds
  **/
 void libRGB::fadeoutRed(int d){
-  libRGB::dim(libRGB::redPin,255,d);
+  libRGB::dim(libRGB::_getredPin(),255,d);
 }
 /**
  * wrapper for libRGB::dim() fades out green
  * @int d delay in milliseconds
  **/
 void libRGB::fadeoutGreen(int d){
-  libRGB::dim(libRGB::greenPin,255,d);
+  libRGB::dim(libRGB::_getgreenPin(),255,d);
 }
 /**
  * wrapper for libRGB::dim() fades out blue
  * @int d delay in milliseconds
  **/
 void libRGB::fadeoutBlue(int d){
-  libRGB::dim(libRGB::bluePin,255,d);
+  libRGB::dim(libRGB::_getbluePin(),255,d);
 }
 /**
  * wrapper for libRGB::dimRGB() fades out blue
@@ -240,4 +240,56 @@ void libRGB::fadeoutBlue(int d){
  **/
 void libRGB::fadeoutRGB(int d){
   libRGB::dimRGB(255,d);
+}
+/**
+ * sets the red pin ON
+ **/
+void libRGB::redON(){
+   digitalWrite(libRGB::_getredPin(),HIGH); 
+}
+/**
+ * sets the red pin OFF
+ **/
+void libRGB::redOFF(){
+   digitalWrite(libRGB::_getredPin(),LOW); 
+}
+/**
+ * sets the green pin ON
+ **/
+void libRGB::greenON(){
+   digitalWrite(libRGB::_getgreenPin(),HIGH); 
+}
+/**
+ * sets the green pin OFF
+ **/
+void libRGB::greenOFF(){
+   digitalWrite(libRGB::_getgreenPin(),LOW); 
+}
+/**
+ * sets the blue pin ON
+ **/
+void libRGB::blueON(){
+   digitalWrite(libRGB::_getbluePin(),HIGH); 
+}
+/**
+ * sets the blue pin OFF
+ **/
+void libRGB::blueOFF(){
+   digitalWrite(libRGB::_getbluePin(),LOW); 
+}
+/**
+ * sets red, green, blue ON
+ **/
+void libRGB::whiteON(){
+  libRGB::redON();
+  libRGB::greenON();
+  libRGB::blueON();
+}
+/**
+ * sets red, green, blue OFF
+ **/
+void libRGB::whiteOFF(){
+  libRGB::redOFF();
+  libRGB::greenOFF();
+  libRGB::blueOFF();
 }

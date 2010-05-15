@@ -50,6 +50,16 @@ class libRGB {
       void fadeoutGreen(int d);
       void fadeoutBlue(int d);
       void fadeoutRGB(int d);
+      void redON();
+      void redOFF();
+      void greenON();
+      void greenOFF();
+      void blueON();
+      void blueOFF();
+      void whiteON();
+      void whiteOFF();
+      void morse(char* message);
+      void strMorse(char* message);     
       //pin defaults
       int redPin;
       int greenPin;

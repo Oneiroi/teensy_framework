@@ -67,7 +67,7 @@ void whiteFade(int d){
   rgb.fadeinRed(d);
   rgb.fadeinGreen(d);
   rgb.fadeinBlue(d);
-  //and out one colour at a timw
+  //and out one colour at a time
   rgb.fadeoutRed(d);
   rgb.fadeoutGreen(d);
   rgb.fadeoutBlue(d);
@@ -81,5 +81,33 @@ void whiteFade(int d){
  * at a guess if running on +5v @ 16mhz delay = 1 / 16000 = 0.0625 ms
  **/
 void loop(){
-  red_green_blue(10);
+  
+  //ON/OFF demos
+  /*rgb.redON();
+  delay(100);
+  rgb.redOFF();
+  delay(100);
+  rgb.greenON();
+  delay(100);
+  rgb.greenOFF();
+  delay(100);
+  rgb.blueON();
+  delay(100);
+  rgb.blueOFF();
+  delay(100);
+  rgb.whiteON();
+  delay(100);
+  rgb.whiteOFF();
+  delay(100);*/
+  //fadein Demos
+  /*rgb.fadeinRed(10);
+  rgb.fadeoutRed(10);
+  rgb.fadeinGreen(10);
+  rgb.fadeoutGreen(10);
+  rgb.fadeinBlue(10);
+  rgb.fadeoutBlue(10);
+  //see the function above this uses the switch pin method to cycle the colours
+  red_green_blue(10);*/
+  //rgb.redON();
+  
 }
