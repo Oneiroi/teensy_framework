@@ -25,10 +25,11 @@ Teensy Arduino library.
 #define H_LIB_SERIAL
 class libSerial {
     public:
-      libSerial(int baud, bool showTime);
+      libSerial(bool showTime);
       ~libSerial();
       void sWrite(char* message);
       void sRead();
+      void _setup(int baud);
       bool showTime;
 };
 #endif

@@ -24,8 +24,7 @@ Teensy Arduino library.
 #include "serial.h"
 #include "WProgram.h"
 
-libSerial::libSerial(int baud, bool showTime){
-    Serial.begin(baud);
+libSerial::libSerial(bool showTime){
     libSerial::showTime = showTime;
 }
 
@@ -39,4 +38,8 @@ void libSerial::sWrite(char* message){
 
 void libSerial::sRead(){
      
+}
+
+void libSerial::_setup(int baud){
+ Serial.begin(baud); 
 }

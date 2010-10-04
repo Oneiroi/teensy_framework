@@ -22,22 +22,24 @@ Teensy Arduino library.
 
     Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form.
 */
-#include "rgb_led.h"
-//#include "serial.h"
-libRGB rgb(12,15,14);
-//libSerial s(38400,true);
-
+#include "serial.h";
+libSerial s(false);
+#include "rgb_led.h";
+libRGB rgb(12,15,14); //rgb(r,g,b) chnage pins to suit
+#include "DateTime.h";
+DateTimeClass
 // The setup() method runs once, when the sketch starts
 
 void setup() {                
-  //do something
+  //serial baud rate setup must occur in setup()
+  //s._setup(9600); //USB is always 12 Mbit/sec
 }
 
 /**
  * demo function fades red then green then blue
  * @var int d delay
  **/
-int cPin = 0;
+int cPin = 0; //the current pin
 void red_green_blue(int d){
   //using nextpin method to cycle
   int i = 0;
@@ -56,32 +58,16 @@ void red_green_blue(int d){
   rgb.fadeoutBlue(d);
   
 }
-
-/**
- * More invloved example function using the rgb method.
- * glows to bright white then to off, steps based on delay
- * @var int d delay
- **/
-void whiteFade(int d){
-  //fade in one colour at a time
-  rgb.fadeinRed(d);
-  rgb.fadeinGreen(d);
-  rgb.fadeinBlue(d);
-  //and out one colour at a time
-  rgb.fadeoutRed(d);
-  rgb.fadeoutGreen(d);
-  rgb.fadeoutBlue(d);
-  //bring all three up
-  rgb.fadeinRGB(d);
-  rgb.fadeoutRGB(d);
-}
-
 /**
  * program loop, I have noticed a delay on re-run
  * at a guess if running on +5v @ 16mhz delay = 1 / 16000 = 0.0625 ms
  **/
 void loop(){
-  
+ /* Simple hello world serial write every 1 second */
+ /*s.sWrite("Hello world");
+ delay(1000);*/
+ 
+ /* RGVB led interaction demos */
   //ON/OFF demos
   /*rgb.redON();
   delay(100);
@@ -99,6 +85,7 @@ void loop(){
   delay(100);
   rgb.whiteOFF();
   delay(100);*/
+  
   //fadein Demos
   /*rgb.fadeinRed(10);
   rgb.fadeoutRed(10);
@@ -109,5 +96,5 @@ void loop(){
   //see the function above this uses the switch pin method to cycle the colours
   red_green_blue(10);*/
   //rgb.redON();
-  
+
 }
